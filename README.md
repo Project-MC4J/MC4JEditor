@@ -175,22 +175,36 @@ version=1.0.0
 
 ## 10. Extension Requirements
 
-Extensions are handled at runtime by MC4JLauncher.
+MC4JLauncher provides an API that allows extensions to interact with the launcher and access supported extension functionality.
 
-Each extension must:
+Extensions are loaded and managed by MC4JLauncher at runtime. Each extension must:
 
 - Be placed in its own subfolder inside `extensions/`.
-- Include an `extension.json` file.
+- Include an `extension.json` file containing its metadata.
 - Include a `main.py` entry-point file.
 
-The Python entry point must follow this structure:
+### Extension Entry Point
+
+Every extension must expose a `run(api)` function:
 
 ```python
 def run(api):
-    # Your extension logic here
+    # Access the MC4JLauncher API through the api object.
     pass
 ```
 
+MC4JLauncher passes its API object to the extension when executing it. Extensions should use this object to interact with the launcher instead of attempting to independently manage launcher internals.
+
+### Extension Events
+
+The launcher supports extension events, including:
+
+- `game_started`
+- `game_stopped`
+
+These events allow extensions to respond to game lifecycle changes.
+
+For additional information about the available API functionality, refer to the MC4JLauncher API implementation and its documentation.
 ## 11. Bundled Third-Party Software
 
 MC4JEditor includes the **VSCodium CLI** as a third-party component.
