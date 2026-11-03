@@ -335,8 +335,6 @@ api.events
 
 Extensions can use this object to integrate with the launcher's event system.
 
-**Note:** The exact event subscription and callback registration methods depend on the EventBus implementation. Consult the corresponding MC4JLauncher source code before implementing event listeners.
-
 ## 7. Complete example
 
 Below is a complete example of a simple extension.
